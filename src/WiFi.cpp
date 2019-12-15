@@ -420,6 +420,13 @@ uint8_t WiFiClass::begin(const char *ssid, const char *key)
 	return startConnect(ssid, M2M_WIFI_SEC_WPA_PSK, key);
 }
 
+// WPA Enterprise Security
+uint8_t WiFiClass::begin(const char *ssid, const char * user, const char *key)
+{
+	const char * credentials[2] = {user, key};
+	return startConnect(ssid, M2M_WIFI_SEC_802_1X, &credentials);
+}
+
 uint8_t WiFiClass::startConnect(const char *ssid, uint8_t u8SecType, const void *pvAuthInfo)
 {
 	if (!_init) {
